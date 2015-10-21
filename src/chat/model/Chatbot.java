@@ -41,8 +41,19 @@ package chat.model;
 		 * @return A true or false based on the length of the supplied String.
 		 */
 		public boolean lengthChecker(String currentInput)
-		{
-			return false;
+		{	
+			boolean hasLength = false;
+			
+			if(currentInput != null)
+			{
+				if(currentInput.length() > 0)
+				{
+					hasLength = true;
+				}
+			}
+			
+			
+			return hasLength;
 		}
 		
 		/**
