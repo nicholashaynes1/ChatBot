@@ -21,7 +21,7 @@ package chat.model;
 		 */
 		public Chatbot(String userName)
 		{
-			
+			this.userName = userName;
 		}
 		
 		private void buildMemesList()
@@ -94,7 +94,7 @@ package chat.model;
 		 */
 		public String getUserName()
 		{
-			return null;
+			return userName;
 		}
 		
 		/**
