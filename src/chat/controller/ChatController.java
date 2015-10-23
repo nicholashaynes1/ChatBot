@@ -20,6 +20,7 @@ public class ChatController
 		chatDisplay = new ChatView();
 		String user = chatDisplay.getGUI("What is your name?");
 		nickChatBot = new Chatbot(user);
+		
 	}
 
 	public void start()

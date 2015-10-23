@@ -15,6 +15,18 @@ package chat.model;
 		private String userName;
 		private String content;
 		
+		
+		public Chatbot()
+		{
+			this.memesList = new ArrayList<String>();
+			this.politicalTopicList = new ArrayList<String>();
+			this.userName = userName;
+			this.content = "Going to the Gym";
+			
+			
+			
+		}
+		
 		/**
 		 * Creates an instance of the Chatbot with the supplied username.
 		 * @param userName The username for the chatbot.
