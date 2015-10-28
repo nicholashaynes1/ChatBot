@@ -19,7 +19,7 @@ public class ChatView
 	 * @return returns the users answer to show.
 	 */
 
-	public String getGUI(String wordsShowing)
+	public String getUserText(String wordsShowing)
 	{
 		String answer = "";
 
@@ -32,10 +32,10 @@ public class ChatView
 	 * This will show the user their input dialog.
 	 * 
 	 * @param displayText
-	 *            What is going to be displayed on the screen
+	 *  What is going to be displayed on the screen
 	 */
 
-	public void displayGUI(String displayText)
+	public void displayUserText(String displayText)
 	{
 		JOptionPane.showMessageDialog(null, displayText);
 	}

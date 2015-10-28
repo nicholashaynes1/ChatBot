@@ -7,7 +7,7 @@ import chat.model.Chatbot;
  * Controller for the chatbot project.
  * 
  * @author nhay7834
- * @version 1.2 10/23/15 Updated documentation and added a while loop. 
+ * @version 1.2 10/23/15 Updated documentation and added a while loop.
  */
 
 public class ChatController
@@ -18,27 +18,39 @@ public class ChatController
 	public ChatController()
 	{
 		chatDisplay = new ChatView();
-		String user = chatDisplay.getGUI("What is your name?");
+		String user = chatDisplay.getUserText("What is your name?");
 		nickChatBot = new Chatbot(user);
-		
+
 	}
 
 	public void start()
 	{
-		chatDisplay.displayGUI("Hello " + nickChatBot.getUserName());
+		chatDisplay.displayUserText("Hello " + nickChatBot.getUserName());
 		chat();
 	}
 
-	
 	/**
 	 * Will return the latest text from our user.
 	 */
 	private void chat()
 	{
-		String textFromUser = chatDisplay.getGUI("Talk to the chatbot");
-		while(nickChatBot.lengthChecker(textFromUser))
+		String textFromUser = chatDisplay.getUserText("Talk to the chatbot");
+
+		while (nickChatBot.lengthChecker(textFromUser))
 		{
-			chatDisplay.getGUI("wow " + textFromUser);
+
+			if (nickChatBot.contentChecker(textFromUser))
+			{
+				chatDisplay.displayUserText("wow, I had no idea you loved" + nickChatBot.getContent());
+			}
+
+			if (nickChatBot.memeChecker(textFromUser))
+			{
+				chatDisplay.displayUserText("Wow what a dank meme");
+
+			}
+			textFromUser = chatDisplay.getUserText(textFromUser);
+
 		}
 	}
 

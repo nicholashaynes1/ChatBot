@@ -6,7 +6,7 @@ package chat.model;
 	 * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
 	 * of the project.
 	 * @author Nick Haynes
-	 * @version 1.0 10/14/15
+	 * @version 1.5 10/28/15 Built and called the buildMemeList
 	 */
 	public class Chatbot
 	{
@@ -16,16 +16,6 @@ package chat.model;
 		private String content;
 		
 		
-		public Chatbot()
-		{
-			this.memesList = new ArrayList<String>();
-			this.politicalTopicList = new ArrayList<String>();
-			this.userName = userName;
-			this.content = "Going to the Gym";
-			
-			
-			
-		}
 		
 		/**
 		 * Creates an instance of the Chatbot with the supplied username.
@@ -34,10 +24,32 @@ package chat.model;
 		public Chatbot(String userName)
 		{
 			this.userName = userName;
+			this.memesList = new ArrayList<String>();
+			this.politicalTopicList = new ArrayList<String>();
+			this.content = "Getting yolked";
+			
+			buildMemesList();
+			buildPoliticalTopicsList();
 		}
 		
+		
+		/**
+		 * this has all the values we put in our memesList with the .add
+		 */
 		private void buildMemesList()
 		{
+			this.memesList.add("Cute animals");
+			this.memesList.add("doge");
+			this.memesList.add("Farmer memes");
+			this.memesList.add("John Cena");
+			this.memesList.add("Pepe");
+			this.memesList.add("Donald Trump");
+			this.memesList.add("Spoopy");
+			this.memesList.add("SkeletonWar");
+			this.memesList.add("Do you even lift bro?");
+			this.memesList.add("Spooterman");
+			
+			
 			
 		}
 		
@@ -75,7 +87,15 @@ package chat.model;
 		 */
 		public boolean contentChecker(String currentInput)
 		{
-			return false;
+			boolean hasContent = false;
+			
+			if(currentInput.toLowerCase().contains(content.toLowerCase()))
+			{
+				hasContent = true;
+			}
+			
+			
+			return hasContent;
 		}
 		
 		/**
@@ -97,7 +117,19 @@ package chat.model;
 		 */
 		public boolean memeChecker(String currentInput)
 		{
-			return false;
+			boolean hasMemes = false;
+			
+			for(String meme : memesList)
+			{
+				if(currentInput.toLowerCase().equals(meme.toLowerCase()))
+				{
+					hasMemes = true;
+				}
+				
+				
+			}
+			return hasMemes;
+			
 		}
 		
 		/**
@@ -115,7 +147,7 @@ package chat.model;
 		 */
 		public String getContent()
 		{
-			return null;
+			return content;
 		}
 		
 		/**
