@@ -7,7 +7,7 @@ import chat.model.Chatbot;
  * Controller for the chatbot project.
  * 
  * @author nhay7834
- * @version 1.2 10/23/15 Updated documentation and added a while loop.
+ * @version 1.3 10/23/15 Updated documentation and added a while loop.
  */
 
 public class ChatController
@@ -44,7 +44,7 @@ public class ChatController
 				chatDisplay.displayUserText("wow, I had no idea you loved" + nickChatBot.getContent());
 			}
 
-			if (nickChatBot.memeChecker(textFromUser))
+			else if (nickChatBot.memeChecker(textFromUser))
 			{
 				chatDisplay.displayUserText("Wow what a dank meme");
 
