@@ -1,6 +1,7 @@
 package chat.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 /**
  * 
@@ -10,6 +11,17 @@ import javax.swing.JOptionPane;
 
 public class ChatView
 {
+	
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
+	
+	public ChatView()
+	{
+		windowMessage = "THis Messag is brought to you by chatbot";
+		chatIcon = new ImageIcon(getClass().getResource("images/satan.png"));
+	}
+	
 
 	/**
 	 * This method will get the users
