@@ -1,6 +1,7 @@
 package chat.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 /**
  * 
@@ -10,6 +11,17 @@ import javax.swing.JOptionPane;
 
 public class ChatView
 {
+	
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
+	
+	public ChatView()
+	{
+		windowMessage = "THis Messag is brought to you by chatbot";
+		chatIcon = new ImageIcon(getClass().getResource("images/satan.png"));
+	}
+	
 
 	/**
 	 * This method will get the users
@@ -23,7 +35,7 @@ public class ChatView
 	{
 		String answer = "";
 
-		answer = JOptionPane.showInputDialog(null, wordsShowing);
+		answer = JOptionPane.showInputDialog(null, wordsShowing, windowMessage, JOptionPane.INFORMATION_MESSAGE, chatIcon, null, "Type here plz").toString();
 
 		return answer;
 	}
@@ -37,7 +49,7 @@ public class ChatView
 
 	public void displayUserText(String displayText)
 	{
-		JOptionPane.showMessageDialog(null, displayText);
+		JOptionPane.showMessageDialog(null, displayText, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 
 }
