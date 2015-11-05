@@ -49,7 +49,7 @@ public class ChatView
 
 	public void displayUserText(String displayText)
 	{
-		JOptionPane.showMessageDialog(null, displayText);
+		JOptionPane.showMessageDialog(null, displayText, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 
 }
