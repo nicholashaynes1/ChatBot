@@ -50,6 +50,11 @@ public class ChatController
 
 			}
 			textFromUser = chatDisplay.getUserText(textFromUser);
+			
+			if (nickChatBot.politicalTopicChecker(textFromUser))
+			{
+				chatDisplay.displayUserText("You are politically correct!");
+			}
 
 		}
 	}
