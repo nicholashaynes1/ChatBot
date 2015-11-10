@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 /**
- * 
+ * handles all our gui components with pop ups and user input pop ups
  * @author nhay7834
  * @version 1.0 10/21/15
  */
@@ -15,7 +15,9 @@ public class ChatView
 	private String windowMessage;
 	private ImageIcon chatIcon;
 	
-	
+	/**
+	 * Displays pop up with a picture
+	 */
 	public ChatView()
 	{
 		windowMessage = "THis Messag is brought to you by chatbot";

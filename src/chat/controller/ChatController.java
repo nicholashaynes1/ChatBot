@@ -30,7 +30,7 @@ public class ChatController
 	}
 
 	/**
-	 * Will return the latest text from our user.
+	 * Will return the latest text from our user with an accurate conversation response.
 	 */
 	private void chat()
 	{
