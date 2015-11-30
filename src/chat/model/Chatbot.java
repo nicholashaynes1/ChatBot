@@ -154,7 +154,50 @@ public class Chatbot
 		}
 		return hasMemes;
 	}
-
+	
+	
+	public boolean quitChecker(String currentInput)
+	{
+		boolean isQuit = false;
+		
+		if(currentInput.toLowerCase().contains("quit"))
+		{
+			isQuit = true;
+		}
+		return isQuit;
+	}
+	
+	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean isMash = false;
+		
+		if(currentInput.toLowerCase().contains("dfg")) 
+		{
+			isMash = true;
+		}
+		
+		if(currentInput.toLowerCase().contains("sdf"))
+		{
+			isMash = true;
+		
+		}
+		
+		if (currentInput.toLowerCase().contains("cvb"))
+		{
+			isMash = true;
+		}
+		
+		if(currentInput.toLowerCase().contains(",./"))
+		{
+			isMash = true;
+		}
+		
+		return isMash;
+	
+	}
+	
+	
 	public String processQuestion(String currentInput)
 	{
 		String nextConversation = "What else what would you like to talk about?";
@@ -226,7 +269,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getMemesList()
 	{
-		return null;
+		return memesList;
 	}
 
 	/**
@@ -236,7 +279,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 
 	/**

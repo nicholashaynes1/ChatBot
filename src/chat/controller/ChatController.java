@@ -1,7 +1,8 @@
 package chat.controller;
 
-import chat.view.ChatView;
+import chat.view.*;
 import chat.model.Chatbot;
+
 
 /**
  * Controller for the chatbot project.
@@ -14,7 +15,12 @@ public class ChatController
 {
 	private Chatbot nickChatBot;
 	private ChatView chatDisplay;
-
+	private ChatFrame baseFrame;
+	private ChatPanel basePanel;
+	
+	
+	
+	
 	public ChatController()
 	{
 		chatDisplay = new ChatView();
@@ -57,6 +63,46 @@ public class ChatController
 			}
 
 		}
+	}
+
+	public Chatbot getNickChatBot()
+	{
+		return nickChatBot;
+	}
+
+	public void setNickChatBot(Chatbot nickChatBot)
+	{
+		this.nickChatBot = nickChatBot;
+	}
+
+	public ChatView getChatDisplay()
+	{
+		return chatDisplay;
+	}
+
+	public void setChatDisplay(ChatView chatDisplay)
+	{
+		this.chatDisplay = chatDisplay;
+	}
+
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
+	}
+
+	public ChatPanel getBasePanel()
+	{
+		return basePanel;
+	}
+
+	public void setBasePanel(ChatPanel basePanel)
+	{
+		this.basePanel = basePanel;
 	}
 
 }
