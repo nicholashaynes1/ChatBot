@@ -37,7 +37,7 @@ public class Chatbot
 	 */
 	private void buildMemesList()
 	{
-		this.memesList.add("Cute animals");
+		this.memesList.add("cute animals");
 		this.memesList.add("doge");
 		this.memesList.add("Farmer memes");
 		this.memesList.add("John Cena");
@@ -53,8 +53,8 @@ public class Chatbot
 	private void buildPoliticalTopicsList()
 	{
 		this.politicalTopicList.add("election");
-		this.politicalTopicList.add("democrat");
-		this.politicalTopicList.add("republican");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("Republican");
 		this.politicalTopicList.add("liberal");
 		this.politicalTopicList.add("conservative");
 		this.politicalTopicList.add("Trump");
@@ -65,7 +65,7 @@ public class Chatbot
 		this.politicalTopicList.add("Fiorina");
 		this.politicalTopicList.add("Sanders");
 		this.politicalTopicList.add("vote");
-		this.politicalTopicList.add("11/8/2016 ");
+		this.politicalTopicList.add("11/4/16");
 		this.politicalTopicList.add("Bush did 9/11");
 
 	}
@@ -290,7 +290,7 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
-
+		this.content = content;
 	}
 
 }

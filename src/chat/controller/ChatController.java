@@ -3,7 +3,6 @@ package chat.controller;
 import chat.view.*;
 import chat.model.Chatbot;
 
-
 /**
  * Controller for the chatbot project.
  * 
@@ -17,10 +16,7 @@ public class ChatController
 	private ChatView chatDisplay;
 	private ChatFrame baseFrame;
 	private ChatPanel basePanel;
-	
-	
-	
-	
+
 	public ChatController()
 	{
 		chatDisplay = new ChatView();
@@ -40,27 +36,12 @@ public class ChatController
 	 */
 	private void chat()
 	{
-		String textFromUser = chatDisplay.getUserText("Talk to the chatbot");
+		String conversation = chatDisplay.getUserText("Talk to the chatbot");
 
-		while (nickChatBot.lengthChecker(textFromUser))
+		while (nickChatBot.lengthChecker(conversation))
 		{
-
-			if (nickChatBot.contentChecker(textFromUser))
-			{
-				chatDisplay.displayUserText("wow, I had no idea you loved" + nickChatBot.getContent());
-			}
-
-			else if (nickChatBot.memeChecker(textFromUser))
-			{
-				chatDisplay.displayUserText("Wow what a dank meme");
-
-			}
-			textFromUser = chatDisplay.getUserText(textFromUser);
-			
-			if (nickChatBot.politicalTopicChecker(textFromUser))
-			{
-				chatDisplay.displayUserText("You are politically correct!");
-			}
+			conversation = nickChatBot.processQuestion(conversation);
+			conversation = chatDisplay.getUserText(conversation);
 
 		}
 	}
