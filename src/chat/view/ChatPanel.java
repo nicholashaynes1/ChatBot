@@ -7,6 +7,12 @@ import chat.controller.ChatController;
 
 import java.awt.event.*;
 
+/**
+ * The panel class for use in other classes to set up our screen.
+ * @author nhay7834
+ *
+ */
+
 public class ChatPanel extends JPanel
 {
 	
@@ -37,7 +43,9 @@ public class ChatPanel extends JPanel
 		setupListeners();
 	}
 	
-	
+	/**
+	 * adding our GUI components, and setting them up for use. 
+	 */
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
@@ -51,6 +59,9 @@ public class ChatPanel extends JPanel
 		
 	}
 	
+	/**
+	 * "Junk method for all our layout code.
+	 */
 	private void setupLayout()
 	{
 		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 181, SpringLayout.WEST, this);
