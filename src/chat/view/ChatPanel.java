@@ -25,9 +25,9 @@ public class ChatPanel extends JPanel
 		this.baseController = baseController;
 		
 		baseLayout = new SpringLayout();
-		chatButton = new JButton("");
-		chatTextViewer = new JTextArea();
-		chatTextField = new JTextField();
+		chatButton = new JButton("Submit");
+		chatTextViewer = new JTextArea(10,30);
+		chatTextField = new JTextField(30);
 		chatLabel = new JLabel();
 		
 		
@@ -68,12 +68,21 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent Clicked)
 			{
-				baseFrame.setSize(500,500);
+				String userText = chatTextField.getText(); //Grab user text
+				String response = baseController.fromUserToChatbot(userText); //send the text to the controller.
+				
+				chatTextViewer.append("\nUser:" + userText); //display user text.
+				chatTextViewer.append("\nChatbot:" + response); //display chatbot text.
+				chatTextField.setText(""); //clears field.
 			}
 		});
 	}
 
-
+	
+	
+	
+	
+	
 	public JTextField getTextField()
 	{
 		return chatTextField;

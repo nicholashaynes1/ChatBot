@@ -22,18 +22,40 @@ public class ChatController
 		chatDisplay = new ChatView();
 		String user = chatDisplay.getUserText("What is your name?");
 		nickChatBot = new Chatbot(user);
+		baseFrame = new ChatFrame(this);
 
 	}
 
 	public void start()
 	{
 		chatDisplay.displayUserText("Hello " + nickChatBot.getUserName());
-		chat();
+		//chat();
 	}
 
 	/**
-	 * Will return the latest text from our user with an accurate conversation response.
+	 * Will return the latest text from our user.
 	 */
+	
+	public String fromUserToChatbot(String conversation)
+	{
+		String botResponse = "";
+		
+		if(nickChatBot.quitChecker(conversation))
+		{
+			shutDown();
+		}
+		botResponse = nickChatBot.processQuestion(conversation);
+		
+		return botResponse;
+	}
+	
+	private void shutDown()
+	{
+		chatDisplay.displayUserText("GoodBye, " + nickChatBot.getUserName() + " Loved talking with you");
+		System.exit(0);
+	}
+	
+	
 	private void chat()
 	{
 		String conversation = chatDisplay.getUserText("Talk to the chatbot");
