@@ -25,7 +25,11 @@ public class ChatController
 		baseFrame = new ChatFrame(this);
 
 	}
-
+	
+	
+	/**
+	 * Gets our username.
+	 */
 	public void start()
 	{
 		chatDisplay.displayUserText("Hello " + nickChatBot.getUserName());
