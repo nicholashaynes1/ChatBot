@@ -37,7 +37,7 @@ public class Chatbot
 	 */
 	private void buildMemesList()
 	{
-		this.memesList.add("Cute animals");
+		this.memesList.add("cute animals");
 		this.memesList.add("doge");
 		this.memesList.add("Farmer memes");
 		this.memesList.add("John Cena");
@@ -53,8 +53,8 @@ public class Chatbot
 	private void buildPoliticalTopicsList()
 	{
 		this.politicalTopicList.add("election");
-		this.politicalTopicList.add("democrat");
-		this.politicalTopicList.add("republican");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("Republican");
 		this.politicalTopicList.add("liberal");
 		this.politicalTopicList.add("conservative");
 		this.politicalTopicList.add("Trump");
@@ -65,7 +65,7 @@ public class Chatbot
 		this.politicalTopicList.add("Fiorina");
 		this.politicalTopicList.add("Sanders");
 		this.politicalTopicList.add("vote");
-		this.politicalTopicList.add("11/8/2016 ");
+		this.politicalTopicList.add("11/4/16");
 		this.politicalTopicList.add("Bush did 9/11");
 
 	}
@@ -154,7 +154,50 @@ public class Chatbot
 		}
 		return hasMemes;
 	}
-
+	
+	
+	public boolean quitChecker(String currentInput)
+	{
+		boolean isQuit = false;
+		
+		if(currentInput.toLowerCase().contains("quit"))
+		{
+			isQuit = true;
+		}
+		return isQuit;
+	}
+	
+	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean isMash = false;
+		
+		if(currentInput.toLowerCase().contains("dfg")) 
+		{
+			isMash = true;
+		}
+		
+		if(currentInput.toLowerCase().contains("sdf"))
+		{
+			isMash = true;
+		
+		}
+		
+		if (currentInput.toLowerCase().contains("cvb"))
+		{
+			isMash = true;
+		}
+		
+		if(currentInput.toLowerCase().contains(",./"))
+		{
+			isMash = true;
+		}
+		
+		return isMash;
+	
+	}
+	
+	
 	public String processQuestion(String currentInput)
 	{
 		String nextConversation = "What else what would you like to talk about?";
@@ -226,7 +269,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getMemesList()
 	{
-		return null;
+		return memesList;
 	}
 
 	/**
@@ -236,7 +279,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 
 	/**
@@ -247,7 +290,7 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
-
+		this.content = content;
 	}
 
 }

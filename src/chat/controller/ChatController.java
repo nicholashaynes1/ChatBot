@@ -1,6 +1,6 @@
 package chat.controller;
 
-import chat.view.ChatView;
+import chat.view.*;
 import chat.model.Chatbot;
 
 /**
@@ -14,49 +14,98 @@ public class ChatController
 {
 	private Chatbot nickChatBot;
 	private ChatView chatDisplay;
+	private ChatFrame baseFrame;
+	private ChatPanel basePanel;
 
 	public ChatController()
 	{
 		chatDisplay = new ChatView();
 		String user = chatDisplay.getUserText("What is your name?");
 		nickChatBot = new Chatbot(user);
+		baseFrame = new ChatFrame(this);
 
 	}
 
 	public void start()
 	{
 		chatDisplay.displayUserText("Hello " + nickChatBot.getUserName());
-		chat();
+		//chat();
 	}
 
 	/**
-	 * Will return the latest text from our user with an accurate conversation response.
+	 * Will return the latest text from our user.
 	 */
+	
+	public String fromUserToChatbot(String conversation)
+	{
+		String botResponse = "";
+		
+		if(nickChatBot.quitChecker(conversation))
+		{
+			shutDown();
+		}
+		botResponse = nickChatBot.processQuestion(conversation);
+		
+		return botResponse;
+	}
+	
+	private void shutDown()
+	{
+		chatDisplay.displayUserText("GoodBye, " + nickChatBot.getUserName() + " Loved talking with you");
+		System.exit(0);
+	}
+	
+	
 	private void chat()
 	{
-		String textFromUser = chatDisplay.getUserText("Talk to the chatbot");
+		String conversation = chatDisplay.getUserText("Talk to the chatbot");
 
-		while (nickChatBot.lengthChecker(textFromUser))
+		while (nickChatBot.lengthChecker(conversation))
 		{
-
-			if (nickChatBot.contentChecker(textFromUser))
-			{
-				chatDisplay.displayUserText("wow, I had no idea you loved" + nickChatBot.getContent());
-			}
-
-			else if (nickChatBot.memeChecker(textFromUser))
-			{
-				chatDisplay.displayUserText("Wow what a dank meme");
-
-			}
-			textFromUser = chatDisplay.getUserText(textFromUser);
-			
-			if (nickChatBot.politicalTopicChecker(textFromUser))
-			{
-				chatDisplay.displayUserText("You are politically correct!");
-			}
+			conversation = nickChatBot.processQuestion(conversation);
+			conversation = chatDisplay.getUserText(conversation);
 
 		}
+	}
+
+	public Chatbot getNickChatBot()
+	{
+		return nickChatBot;
+	}
+
+	public void setNickChatBot(Chatbot nickChatBot)
+	{
+		this.nickChatBot = nickChatBot;
+	}
+
+	public ChatView getChatDisplay()
+	{
+		return chatDisplay;
+	}
+
+	public void setChatDisplay(ChatView chatDisplay)
+	{
+		this.chatDisplay = chatDisplay;
+	}
+
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
+	}
+
+	public ChatPanel getBasePanel()
+	{
+		return basePanel;
+	}
+
+	public void setBasePanel(ChatPanel basePanel)
+	{
+		this.basePanel = basePanel;
 	}
 
 }
