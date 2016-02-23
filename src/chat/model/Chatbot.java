@@ -215,7 +215,7 @@ public class Chatbot
 		case 1:
 			if(memeChecker(currentInput))
 			{
-				nextConversation = "That is a pretty ank meme bro way to stay current";
+				nextConversation = "That is a pretty dank meme bro way to stay current";
 			}
 			break;
 		case 2:if(politicalTopicChecker(currentInput))
