@@ -48,6 +48,7 @@ public class ChatPanel extends JPanel
 		
 		
 		
+		
 		setupChatPane();
 		setupPanel();
 		setupLayout();
@@ -63,6 +64,7 @@ public class ChatPanel extends JPanel
 		chatTextViewer.setEnabled(false);
 		chatTextViewer.setEditable(false);
 		textPane = new JScrollPane(chatTextViewer);
+		
 		
 	}
 	
@@ -91,12 +93,13 @@ public class ChatPanel extends JPanel
 	 */
 	private void setupLayout()
 	{
+		baseLayout.putConstraint(SpringLayout.WEST, textPane, 150, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatTextField, 122, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 260, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 315, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, checkTwitterButton, -6, SpringLayout.WEST, saveButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, chatTextField, 247, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -18, SpringLayout.NORTH, chatTextField);
-		baseLayout.putConstraint(SpringLayout.WEST, chatTextField, 67, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 209, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, tweetButton, 53, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, tweetButton, -46, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, checkTwitterButton, 0, SpringLayout.NORTH, tweetButton);
