@@ -29,6 +29,7 @@ public class ChatPanel extends JPanel
 	private JTextField chatTextField;
 	
 	
+	
 	private ChatFrame baseFrame; 
 	
 	public ChatPanel (ChatController baseController)
@@ -115,6 +116,15 @@ public class ChatPanel extends JPanel
 	
 	private void setupListeners()
 	{
+		tweetButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent Clicked)
+			{
+				baseController.sendTweet("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
+			}
+			
+		});
+		
 		chatButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent Clicked)
@@ -127,10 +137,24 @@ public class ChatPanel extends JPanel
 				chatTextField.setText(""); //clears field.
 			}
 		});
+	
+	
+	
+	checkTwitterButton.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent click)
+		{
+			String user = chatTextField.getText();
+			String results = baseController.analyze(user);
+			chatTextViewer.setText(results);
+		}
+		
+		
+		
+	});
+	
 	}
 
-	
-	
 	
 	
 	
