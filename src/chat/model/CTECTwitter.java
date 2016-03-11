@@ -1,13 +1,13 @@
 package chat.model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import chat.controller.ChatController;
 import twitter4j.*;
 
 /**
  * @author nhay7834
- *@version 0.1 Added our twitter method.
+ * @version 0.1 Added our twitter method.
  */
 public class CTECTwitter
 {
@@ -15,9 +15,7 @@ public class CTECTwitter
 	private ArrayList<String> wordsList;
 	private Twitter chatbotTwitter;
 	private ChatController baseController;
-	
-	
-	
+
 	public CTECTwitter(ChatController baseController)
 	{
 		this.baseController = baseController;
@@ -26,54 +24,60 @@ public class CTECTwitter
 		this.chatbotTwitter = TwitterFactory.getSingleton();
 	}
 
-
-
-
-public void sendTweet(String input)
-{
-	try
+	public void sendTweet(String input)
 	{
-		chatbotTwitter.updateStatus(input);
-				
-	}
-	catch(TwitterException error)
-	{
-		baseController.handleErrors(error.getErrorMessage());
-	}
-	
-	
-	
-}
-
-
-public void loadTweets(String twitterHandle) throws TwitterException
-{
-	Paging statusPage = new Paging(1, 200);
-	int page = 1;
-	while(page <=10)
-	{
-		statusPage.setPage(page);
-		statusList.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage ));
-	
-		page++;
-	}
-	
-	for(Status currentStatus : statusList)
-	{
-		String[] tweetText = currentStatus.getText().split(" ");
-		for(String word : tweetText)
+		try
 		{
-			wordsList.add(removePunctuation(word).toLowerCase());
+			chatbotTwitter.updateStatus(input);
+
 		}
+		catch (TwitterException error)
+		{
+			baseController.handleErrors(error.getErrorMessage());
+		}
+
 	}
 
+	public void loadTweets(String twitterHandle) throws TwitterException
+	{
+		Paging statusPage = new Paging(1, 200);
+		int page = 1;
+		while (page <= 10)
+		{
+			statusPage.setPage(page);
+			statusList.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage));
 
+			page++;
+		}
 
+		for (Status currentStatus : statusList)
+		{
+			String[] tweetText = currentStatus.getText().split(" ");
+			for (String word : tweetText)
+			{
+				wordsList.add(removePunctuation(word).toLowerCase());
+			}
+		}
 
+		removeCommonEnglishWords(wordsList);
+		removeEmptyText();
 
-}
+	}
 
-
-
-
+	
+	
+	private void removeEmptyText()
+	{
+		
+	}
+	
+	private List removeCommonEnglishWords(List<String> wordList)
+	{
+		return null;
+	}
+	
+	private String removePunctuation(String Word)
+	{
+		return null;
+	}
 }

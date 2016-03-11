@@ -73,6 +73,16 @@ public class ChatController
 		}
 	}
 
+	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "the twitter user " + userName + "has ..........";
+		return userAnalysis;
+	}
+	
+	
+	
+	
 	public void handleErrors(String error)
 	{
 		chatDisplay.displayUserText(error);
