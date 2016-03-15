@@ -1,5 +1,7 @@
 package chat.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 import chat.controller.ChatController;
@@ -64,48 +66,75 @@ public class CTECTwitter
 
 	}
 
-	
-	
 	private void removeEmptyText()
 	{
-		for(int spot = 0; spot < wordsList.size(); spot++)
-			if(wordsList.get(spot).equals(""))
+		for (int spot = 0; spot < wordsList.size(); spot++)
+			if (wordsList.get(spot).equals(""))
 			{
 				wordsList.remove(spot);
 				spot--;
 			}
 	}
-	
+
 	private List removeCommonEnglishWords(List<String> wordList)
 	{
 		String[] boringWords = importWordsToArray();
-		
-		for(int count = 0; count < wordsList.size(); count ++)
+
+		for (int count = 0; count < wordsList.size(); count++)
 		{
-			for(int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
+			for (int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
 			{
-				if(wordsList.get(count).equalsIgnoreCase(boringWords[removeSpot]))
-					{
-						wordList.remove(count);
-						count--;
-						removeSpot = boringWords.length;
-					}
+				if (wordsList.get(count).equalsIgnoreCase(boringWords[removeSpot]))
+				{
+					wordList.remove(count);
+					count--;
+					removeSpot = boringWords.length;
+				}
 			}
 		}
 		return wordsList;
 	}
-	
+
 	private String removePunctuation(String currentString)
 	{
 		String punctuation = ".,'?;:\"(){}^[]<>-";
 		String scrubbedString = "";
-		for(int i = 0; i < currentString.length(); i++)
+		for (int i = 0; i < currentString.length(); i++)
 		{
-			if(punctuation.indexOf(currentString.charAt(i)) == -1)
+			if (punctuation.indexOf(currentString.charAt(i)) == -1)
 			{
 				scrubbedString += currentString.charAt(i);
 			}
 		}
 		return scrubbedString;
+	}
+
+	private String[] importWordsToArray()
+	{
+	String[] boringWords;
+	int wordCount = 0;
+	try
+	{
+		Scanner wordFile = new Scanner(new File("commonWords.txt"));
+		while(wordFile.hasNext())
+		{
+			wordCount++;
+			wordFile.next();
+		}
+		wordFile.reset();
+		boringWords = new String[wordCount];
+		int boringWordCount = 0;
+		while(wordFile.hasNext())
+		{
+			boringWords[boringWordCount] = wordFile.next();
+		}
+		wordFile.close();
+	}
+	catch(FileNotFoundException e)
+	{
+		baseController.handleErrors(e.getMessage());
+		return new String[0];
+	}
+		return boringWords;
 	}
 }
