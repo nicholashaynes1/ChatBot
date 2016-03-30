@@ -111,30 +111,98 @@ public class CTECTwitter
 
 	private String[] importWordsToArray()
 	{
-	String[] boringWords;
-	int wordCount = 0;
-	try
-	{
-		Scanner wordFile = new Scanner(new File("commonWords.txt"));
-		while(wordFile.hasNext())
+		String[] boringWords;
+		int wordCount = 0;
+		try
 		{
-			wordCount++;
-			wordFile.next();
+			Scanner wordFile = new Scanner(new File("commonWords.txt"));
+			while (wordFile.hasNext())
+			{
+				wordCount++;
+				wordFile.next();
+			}
+			wordFile = new Scanner(new File("commonWords.txt"));
+			boringWords = new String[wordCount];
+			int boringWordCount = 0;
+			while (wordFile.hasNext())
+			{
+				boringWords[boringWordCount] = wordFile.next();
+				boringWordCount++;
+			}
+			wordFile.close();
 		}
-		wordFile.reset();
-		boringWords = new String[wordCount];
-		int boringWordCount = 0;
-		while(wordFile.hasNext())
+		catch (FileNotFoundException error)
 		{
-			boringWords[boringWordCount] = wordFile.next();
+			baseController.handleErrors(error.getMessage());
+			return new String[0];
 		}
-		wordFile.close();
-	}
-	catch(FileNotFoundException e)
-	{
-		baseController.handleErrors(e.getMessage());
-		return new String[0];
-	}
 		return boringWords;
 	}
+
+	public String topResults()
+	{
+		String tweetResults = "";
+		int topWordLocation = 0;
+		int topCount = 0;
+
+		for (int index = 0; index < wordsList.size(); index++)
+		{
+			int wordUseCount = 1;
+			for (int spot = index + 1; spot < wordsList.size(); spot++)
+			{
+				if (wordsList.get(index).equals(wordsList.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if (wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+
+		tweetResults = "the top word in the tweets was " + wordsList.get(topWordLocation) + " and it was used " + topCount + " times! At corner canyon highschool";
+		wordsList.clear();
+		statusList.clear();
+
+		return tweetResults;
+
+	}
+
+	
+	
+	
+	
+	public String sampleInvestigation()
+	{
+		String results = "";
+		
+		Query query = new Query("Dank memes");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.517691, -111.871743), 5, Query.MILES);
+		query.setSince("2016 - 1- 1");
+		try
+		{
+			QueryResult result = chatbotTwitter.search(query);
+			results +=("count : " + result.getTweets().size() );
+			for(Status tweet : result.getTweets())
+			{
+				results +=("@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n");
+			}
+		}
+		catch(TwitterException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return results;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

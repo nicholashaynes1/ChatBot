@@ -2,62 +2,55 @@ package chat.view;
 
 import javax.swing.*;
 
-
 import chat.controller.ChatController;
 
 import java.awt.event.*;
 
 /**
  * The panel class for use in other classes to set up our screen.
+ * 
  * @author nhay7834
  *
  */
 
 public class ChatPanel extends JPanel
 {
-	
+
 	private ChatController baseController;
 	private SpringLayout baseLayout;
-	
+
 	private JScrollPane textPane;
 	private JButton chatButton;
 	private JButton tweetButton;
 	private JButton checkTwitterButton;
 	private JButton saveButton;
 	private JButton openButton;
+	private JButton geoLocationButton;
 	private JTextArea chatTextViewer;
 	private JTextField chatTextField;
-	
-	
-	
-	private ChatFrame baseFrame; 
-	
-	public ChatPanel (ChatController baseController)
+
+	private ChatFrame baseFrame;
+
+	public ChatPanel(ChatController baseController)
 	{
 		this.baseController = baseController;
 		
 		baseLayout = new SpringLayout();
+		geoLocationButton = new JButton("Hot memes in your area");
 		chatButton = new JButton("Submit");
 		tweetButton = new JButton("Tweet this!");
 		checkTwitterButton = new JButton("Check Twitter");
 		saveButton = new JButton(" Save this conversation!");
-		chatTextViewer = new JTextArea(10,25);
+		chatTextViewer = new JTextArea(10, 25);
 		openButton = new JButton("Open a previous conversation maybe?");
 		chatTextField = new JTextField(30);
-		
-		
-		
-		
-		
-		
+
 		setupChatPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
-	
-	
-	
+
 	public void setupChatPane()
 	{
 		chatTextViewer.setLineWrap(true);
@@ -65,30 +58,29 @@ public class ChatPanel extends JPanel
 		chatTextViewer.setEnabled(false);
 		chatTextViewer.setEditable(false);
 		textPane = new JScrollPane(chatTextViewer);
-		
-		
+
 	}
-	
-	
+
 	/**
-	 * adding our GUI components, and setting them up for use. 
+	 * adding our GUI components, and setting them up for use.
 	 */
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
+		this.add(geoLocationButton);
 		this.add(chatButton);
 		this.add(tweetButton);
 		this.add(checkTwitterButton);
 		this.add(saveButton);
 		this.add(openButton);
-		//this.add(chatTextViewer);
+		// this.add(chatTextViewer);
 		this.add(textPane);
 		this.add(chatTextField);
 		chatTextField.setToolTipText("Type here for chatBobt");
 		chatTextViewer.setEnabled(false);
-		
+
 	}
-	
+
 	/**
 	 * "Junk method for all our layout code.
 	 */
@@ -111,9 +103,9 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatTextViewer, 0, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatTextViewer, 160, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, chatTextViewer, 360, SpringLayout.WEST, this);
-		
+
 	}
-	
+
 	private void setupListeners()
 	{
 		tweetButton.addActionListener(new ActionListener()
@@ -122,50 +114,53 @@ public class ChatPanel extends JPanel
 			{
 				baseController.sendTweet("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
 			}
-			
+
 		});
-		
+
 		chatButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent Clicked)
 			{
-				String userText = chatTextField.getText(); //Grab user text
-				String response = baseController.fromUserToChatbot(userText); //send the text to the controller.
-				
-				chatTextViewer.append("\nUser:" + userText); //display user text.
-				chatTextViewer.append("\nChatbot:" + response); //display chatbot text.
-				chatTextField.setText(""); //clears field.
+				String userText = chatTextField.getText(); // Grab user text
+				String response = baseController.fromUserToChatbot(userText); // send the text to the controller.
+
+				chatTextViewer.append("\nUser:" + userText); // display user text.
+				chatTextViewer.append("\nChatbot:" + response); // display chatbot text.
+				chatTextField.setText(""); // clears field.
 			}
 		});
-	
-	
-	
-	checkTwitterButton.addActionListener(new ActionListener()
-	{
-		public void actionPerformed(ActionEvent click)
+
+		checkTwitterButton.addActionListener(new ActionListener()
 		{
-			String user = chatTextField.getText();
-			String results = baseController.analyze(user);
-			chatTextViewer.setText(results);
-		}
+			public void actionPerformed(ActionEvent click)
+			{
+				String user = chatTextField.getText();
+				String results = baseController.analyze(user);
+				chatTextViewer.setText(results);
+			}
+
+		});
+
+	
 		
+		geoLocationButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String qryResults = baseController.queryAnalyze();
+				chatTextViewer.setText(qryResults);
+			}
+		});
 		
-		
-	});
+	
+	
+	
 	
 	}
 
-	
-	
-	
 	public JTextField getTextField()
 	{
 		return chatTextField;
 	}
 
-
-	
-	
-	
 }
-
